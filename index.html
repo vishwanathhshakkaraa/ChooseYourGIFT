@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your GIFT - Personalized Keepsakes & Custom Gifts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coral: {
+                            50: '#fff5f3',
+                            100: '#ffe8e4',
+                            500: '#FF6B52',
+                            600: '#FF5A43',
+                            700: '#e5452f',
+                        },
+                        plum: {
+                            800: '#4A2E4B',
+                            900: '#3D243D',
+                            950: '#2A182B',
+                        },
+                        cream: {
+                            50: '#FFFDF9',
+                            100: '#FAF7F2',
+                            200: '#F5EFE6',
+                        },
+                        mint: {
+                            100: '#E2FAF2',
+                            200: '#D6F5EB',
+                            600: '#0FA97E',
+                        },
+                        lavender: {
+                            100: '#F0EBFA',
+                            200: '#EBE4F4',
+                            600: '#7C4DFF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF7F2;
+            color: #2D2727;
+        }
+        .wood-border {
+            border: 14px solid #5c3a21;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 10px 25px -5px rgba(0,0,0,0.3);
+            border-image: linear-gradient(to bottom right, #8B5A2B, #4A2E1B, #6E4723) 1;
+        }
+        .wood-plaque {
+            background: linear-gradient(135deg, #d4a373 0%, #a97443 100%);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.2);
+        }
+        /* Hide scrollbar for clean horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-coral-500 selection:text-white">
+
+    <div id="app" class="flex-grow flex flex-col">
+
+        <!-- Announcement Top Bar -->
+        <div class="bg-plum-900 text-white text-xs py-2 px-4 text-center font-medium flex justify-between items-center px-6">
+            <div class="mx-auto flex items-center gap-2">
+                <span>✨ Express Delivery across India • Hand-crafted customization with extra love ❤️</span>
+            </div>
+            <button onclick="toggleAdminView()" class="hidden md:flex items-center gap-1 text-[11px] bg-plum-800 hover:bg-coral-500 transition px-2.5 py-1 rounded text-white/90">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                <span id="admin-toggle-text">Admin Dashboard</span>
+            </button>
+        </div>
+
+        <header id="main-header" class="bg-cream-50 border-b border-stone-200/60 sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 bg-coral-500 rounded-xl flex items-center justify-center text-white font-extrabold text-2xl shadow-md shadow-coral-500/20">
+                        G
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold text-plum-900 tracking-tight">Choose Your <span class="text-coral-500">GIFT</span></span>
+                    </div>
+                </div>
+
+                <!-- Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-stone-700">
+                    <button onclick="navigateTo('home')" id="nav-home" class="hover:text-coral-500 transition">Home</button>
+                    <button onclick="navigateTo('explore')" id="nav-explore" class="hover:text-coral-500 transition">Explore Gifts</button>
+                    <button onclick="navigateTo('personalize')" id="nav-personalize" class="hover:text-coral-500 transition">Personalize Now</button>
+                    <button onclick="navigateTo('explore')" id="nav-occasions" class="hover:text-coral-500 transition">Occasions</button>
+                </nav>
+
+                <!-- Search & Cart Action -->
+                <div class="flex items-center gap-3">
+                    <div class="relative hidden sm:block w-64 lg:w-80">
+                        <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Search customized gifts..." class="w-full bg-stone-100 border-none rounded-full py-2.5 pl-10 pr-4 text-xs font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-coral-500/50">
+                        <svg class="w-4 h-4 text-stone-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+
+                    <button onclick="navigateTo('cart')" class="bg-plum-900 hover:bg-plum-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Cart (<span id="cart-count-badge">2</span>)</span>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <main class="flex-grow">
+
+            <!-- PAGE 1: HOME PAGE -->
+            <div id="page-home" class="view-page">
+                
+                <!-- Hero Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-lavender-100 border border-purple-200/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-700">
+                            <span>♥</span>
+                            <span>CUSTOMIZED JUST FOR YOUR LOVED ONES</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-plum-900 leading-tight">
+                            Gifts That Tell Your <span class="text-coral-500">Unique Story</span>
+                        </h1>
+                        <p class="text-stone-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                            Transform ordinary memories into extraordinary physical gifts. Easily upload photos, engrave heartfelt names, and preview instantly. Handcrafted in India.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <button onclick="navigateTo('explore')" class="bg-coral-500 hover:bg-coral-600 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-coral-500/30 transition text-sm">
+                                Explore Custom Gifts
+                            </button>
+                            <button onclick="scrollToSection('crafting-flow')" class="bg-transparent border-2 border-plum-900 text-plum-900 hover:bg-plum-900 hover:text-white font-bold px-7 py-3.5 rounded-xl transition text-sm">
+                                How Customization Works
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Graphic Display -->
+                    <div class="lg:col-span-6 relative">
+                        <div class="bg-white p-3 sm:p-5 rounded-3xl shadow-xl border border-stone-200/60 relative">
+                            <div class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-stone-100">
+                                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1000&q=80" alt="Frame preview" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <div class="text-xs uppercase tracking-wider font-semibold opacity-90">OUR STORY BEGINS</div>
+                                        <div class="text-lg font-bold">Sarah & James • Est. 2023</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Explore Popular Categories -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                    <h2 class="text-2xl font-bold text-plum-900 mb-6">Explore Popular Categories</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div onclick="filterCategory('Photo Frames')" class="bg-mint-200 hover:shadow-md transition cursor-pointer p-5 rounded-2xl flex flex-col justify-between h-36">
+                            <div class="font-bold text-plum-900 text-lg">Custom Frames</div>
+                            <div class="text-xs font-semibold text-stone-600">From ₹599</div>
+                        </div>
+                        <div onclick="filterCategory('Photo Cups')" class="bg-lavender-200 hover:shadow-md transition cursor-pointer p-5 rounded-2xl flex flex-col justify-between h-36">
+                            <div class="font-bold text-plum-900 text-lg">Photo Cups</div>
+                            <div class="text-xs font-semibold text-stone-600">From ₹499</div>
+                        </div>
+                        <div onclick="filterCategory('Keychains')" class="bg-cream-200 hover:shadow-md transition cursor-pointer p-5 rounded-2xl flex flex-col justify-between h-36">
+                            <div class="font-bold text-plum-900 text-lg">Keychains</div>
+                            <div class="text-xs font-semibold text-stone-600">From ₹399</div>
+                        </div>
+                        <div onclick="filterCategory('Cozy Pillow')" class="bg-mint-200 hover:shadow-md transition cursor-pointer p-5 rounded-2xl flex flex-col justify-between h-36">
+                            <div class="font-bold text-plum-900 text-lg">Cozy Pillows</div>
+                            <div class="text-xs font-semibold text-stone-600">From ₹699</div>
+                        </div>
+                        <div onclick="filterCategory('Photo Lamps')" class="bg-lavender-200 hover:shadow-md transition cursor-pointer p-5 rounded-2xl flex flex-col justify-between h-36">
+                            <div class="font-bold text-plum-900 text-lg">Photo Lamps</div>
+                            <div class="text-xs font-semibold text-stone-600">From ₹1,299</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Crafting Your Perfect Keepsake Flow -->
+                <section id="crafting-flow" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="text-center max-w-xl mx-auto mb-12">
+                        <span class="bg-coral-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">EASY 3-STEP FLOW</span>
+                        <h2 class="text-3xl font-extrabold text-plum-900 mt-3">Crafting Your Perfect Keepsake</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-8 rounded-3xl border border-stone-200/60 shadow-sm relative">
+                            <span class="text-5xl font-extrabold text-coral-500/80 block mb-4">01</span>
+                            <h3 class="text-lg font-bold text-plum-900 mb-2">Select & Upload</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Choose your favorite item and upload your high-res photos or special texts instantly.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl border border-stone-200/60 shadow-sm relative">
+                            <span class="text-5xl font-extrabold text-coral-500/80 block mb-4">02</span>
+                            <h3 class="text-lg font-bold text-plum-900 mb-2">Live Tailor Preview</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Adjust alignment, select customized frame sizes, and review the live render.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl border border-stone-200/60 shadow-sm relative">
+                            <span class="text-5xl font-extrabold text-coral-500/80 block mb-4">03</span>
+                            <h3 class="text-lg font-bold text-plum-900 mb-2">Love-Packed Delivery</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Our artisan print house ships your custom masterwork wrapped in safe joyful parcels.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Selling Personalized Gifts -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <span class="bg-mint-200 text-mint-600 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">CURATED PICKS</span>
+                            <h2 class="text-2xl font-bold text-plum-900 mt-2">Best Selling Personalized Gifts</h2>
+                        </div>
+                        <button onclick="navigateTo('explore')" class="text-coral-500 hover:text-coral-600 font-bold text-sm">View All Catalog &gt;</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="bestsellers-grid">
+                        <!-- Dynamic Bestsellers render -->
+                    </div>
+                </section>
+
+                <!-- Customer Testimonials -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                        <h2 class="text-2xl font-bold text-plum-900">Loved by 10,000+ Gift Givers in India</h2>
+                        <div class="flex text-amber-400 gap-1 text-lg">
+                            ★ ★ ★ ★ ★
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200/60 text-stone-700 text-xs leading-relaxed flex flex-col justify-between">
+                            <p class="italic mb-6">"Ordered the wood photo print for my parents' silver anniversary. The clarity of the wood print is breathtaking! Delivery was on time in Bengaluru."</p>
+                            <div>
+                                <div class="font-bold text-plum-900 text-sm">Karan Iyer</div>
+                                <div class="text-stone-400 text-[11px]">Bengaluru</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200/60 text-stone-700 text-xs leading-relaxed flex flex-col justify-between">
+                            <p class="italic mb-6">"I bought a personalized keychain and a printed magic cup. Both exceeded my expectations. The printed photo renders on the cup perfectly when tea is hot."</p>
+                            <div>
+                                <div class="font-bold text-plum-900 text-sm">Priya Sharma</div>
+                                <div class="text-stone-400 text-[11px]">Mumbai</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200/60 text-stone-700 text-xs leading-relaxed flex flex-col justify-between">
+                            <p class="italic mb-6">"Choose Your GIFT made my sister's birthday super special. The personalized photo lamp is incredibly bright, and they wrapped it beautifully!"</p>
+                            <div>
+                                <div class="font-bold text-plum-900 text-sm">Aman Malhotra</div>
+                                <div class="text-stone-400 text-[11px]">Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Occasion Quick Links -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h2 class="text-2xl font-bold text-plum-900 mb-6">Gifting For Every Beautiful Occasion</h2>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="navigateTo('explore')" class="bg-lavender-200 hover:bg-lavender-100 text-plum-900 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 text-xs transition">
+                            🎁 Anniversary Spark
+                        </button>
+                        <button onclick="navigateTo('explore')" class="bg-lavender-200 hover:bg-lavender-100 text-plum-900 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 text-xs transition">
+                            🎁 Birthday Bling
+                        </button>
+                        <button onclick="navigateTo('explore')" class="bg-lavender-200 hover:bg-lavender-100 text-plum-900 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 text-xs transition">
+                            🎁 Wedding Memories
+                        </button>
+                        <button onclick="navigateTo('explore')" class="bg-lavender-200 hover:bg-lavender-100 text-plum-900 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 text-xs transition">
+                            🎁 Festival Blessings
+                        </button>
+                        <button onclick="navigateTo('explore')" class="bg-lavender-200 hover:bg-lavender-100 text-plum-900 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 text-xs transition">
+                            🎁 Corporate Gratitude
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- PAGE 2: CATALOG / EXPLORE PAGE -->
+            <div id="page-explore" class="view-page hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-extrabold text-plum-900">Explore Our Personalized Keepsakes</h1>
+                        <p class="text-stone-500 text-xs mt-1">Showing <span id="catalog-count-text">8</span> premium customizable gifts with instant print preview available</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        <!-- Filter Sidebar -->
+                        <div class="lg:col-span-3 space-y-6 bg-white p-6 rounded-2xl border border-stone-200/60 h-fit">
+                            <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+                                <h3 class="font-bold text-plum-900 text-sm">Filters</h3>
+                                <button onclick="resetFilters()" class="text-coral-500 hover:text-coral-600 text-xs font-semibold">Clear All</button>
+                            </div>
+
+                            <!-- Gift Categories -->
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">GIFT CATEGORIES</h4>
+                                <div class="space-y-2 text-xs font-medium text-stone-700">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" onchange="applyFilters()" value="Keychains" class="category-checkbox accent-coral-500 rounded">
+                                        <span>Keychains (₹399-499)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" onchange="applyFilters()" value="Photo Cups" class="category-checkbox accent-coral-500 rounded">
+                                        <span>Photo Cups (₹499-1,249)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" onchange="applyFilters()" value="Photo Frames" class="category-checkbox accent-coral-500 rounded">
+                                        <span>Photo Frames (₹599-3,599)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" onchange="applyFilters()" value="Cozy Pillow" class="category-checkbox accent-coral-500 rounded">
+                                        <span>Cozy Pillow Prints</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" onchange="applyFilters()" value="Photo Lamps" class="category-checkbox accent-coral-500 rounded">
+                                        <span>Photo Lamps & Wood Prints</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Price Range -->
+                            <div class="pt-4 border-t border-stone-100">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">PRICE RANGE</h4>
+                                <div class="space-y-2 text-xs font-medium text-stone-700">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="price-range" onchange="applyFilters()" value="all" checked class="accent-coral-500">
+                                        <span>All Prices</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="price-range" onchange="applyFilters()" value="under-499" class="accent-coral-500">
+                                        <span>Under ₹499</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="price-range" onchange="applyFilters()" value="500-1499" class="accent-coral-500">
+                                        <span>₹500 - ₹1,499</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="price-range" onchange="applyFilters()" value="1500-2999" class="accent-coral-500">
+                                        <span>₹1,500 - ₹2,999</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="price-range" onchange="applyFilters()" value="3000-above" class="accent-coral-500">
+                                        <span>₹3,000 & Above</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Catalog Grid -->
+                        <div class="lg:col-span-9 space-y-6">
+                            
+                            <!-- Sort Control Bar -->
+                            <div class="bg-white px-6 py-3 rounded-2xl border border-stone-200/60 flex items-center justify-between text-xs">
+                                <span class="text-stone-600 font-medium">Showing <strong id="filter-result-count" class="text-plum-900">8</strong> products</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-stone-500">Sort By:</span>
+                                    <select id="sort-select" onchange="applyFilters()" class="bg-stone-50 border border-stone-200 rounded-lg py-1.5 px-3 font-semibold text-plum-900 focus:outline-none">
+                                        <value value="popular">Most Popular ↓</value>
+                                        <option value="low-high">Price: Low to High</option>
+                                        <option value="high-low">Price: High to Low</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Products Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="catalog-products-grid">
+                                <!-- Dynamic Rendered Products -->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 3: PRODUCT CUSTOMIZATION PAGE -->
+            <div id="page-personalize" class="view-page hidden">
+                
+                <!-- Breadcrumbs -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="flex items-center gap-2 text-xs text-stone-500 font-medium">
+                        <button onclick="navigateTo('home')" class="hover:text-coral-500">Home</button>
+                        <span>&gt;</span>
+                        <button onclick="navigateTo('explore')" class="hover:text-coral-500">Custom Frames</button>
+                        <span>&gt;</span>
+                        <span class="text-stone-800 font-semibold" id="customizer-title-breadcrumb">Fully Customized Premium Photo Frame</span>
+                    </div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pb-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                        
+                        <!-- Left Image Live Preview Canvas -->
+                        <div class="lg:col-span-6 space-y-4">
+                            <div class="bg-white p-6 sm:p-10 rounded-3xl border-2 border-coral-500/40 shadow-lg relative flex flex-col items-center justify-center min-h-[420px]">
+                                <span class="absolute top-4 left-4 bg-coral-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                    ✨ LIVE CUSTOM PREVIEW
+                                </span>
+
+                                <!-- Wooden Frame Graphic Container -->
+                                <div class="wood-border p-4 bg-amber-50/50 rounded-sm shadow-2xl max-w-sm w-full transition-all duration-300">
+                                    <div class="aspect-[4/3] bg-stone-200 overflow-hidden relative shadow-inner">
+                                        <img id="live-preview-img" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80" alt="Live Preview" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="wood-plaque mt-3 p-2 rounded text-center text-amber-950 shadow-inner">
+                                        <p id="live-plaque-text" class="text-xs font-bold tracking-tight font-serif italic text-amber-950 drop-shadow-sm">
+                                            "Happy 25th Anniversary Mom & Dad!"
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 text-[11px] font-semibold text-stone-400">
+                                    Teakwood Frame Option • Size Selected: <span id="selected-size-label">8" x 10"</span>
+                                </div>
+                            </div>
+
+                            <!-- Thumbnail switcher -->
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="switchPreviewImage(0)" class="border-2 border-coral-500 rounded-xl overflow-hidden aspect-[4/3] bg-stone-100">
+                                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                                </button>
+                                <button onclick="switchPreviewImage(1)" class="border border-stone-200 rounded-xl overflow-hidden aspect-[4/3] bg-stone-100">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                                </button>
+                                <button onclick="switchPreviewImage(2)" class="border border-stone-200 rounded-xl overflow-hidden aspect-[4/3] bg-stone-100">
+                                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Customization Controls -->
+                        <div class="lg:col-span-6 bg-white p-8 rounded-3xl border border-stone-200/60 space-y-6">
+                            
+                            <div>
+                                <span class="bg-purple-100 text-purple-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">BESTSELLER</span>
+                                <h1 class="text-2xl sm:text-3xl font-extrabold text-plum-900 mt-2" id="custom-product-name">Fully Customized Premium Photo Frame</h1>
+                                
+                                <div class="flex items-center gap-2 mt-2">
+                                    <div class="flex text-amber-400 text-xs">★★★★★</div>
+                                    <span class="text-xs font-bold text-stone-700">4.9/5</span>
+                                    <span class="text-xs text-stone-400">(480 verified buyer reviews)</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-3 mt-4">
+                                    <span class="text-3xl font-extrabold text-coral-500" id="custom-price">₹1,499</span>
+                                    <span class="text-sm text-stone-400 line-through" id="custom-orig-price">₹1,999</span>
+                                    <span class="bg-mint-200 text-mint-600 text-xs font-bold px-2.5 py-0.5 rounded">SAVE ₹500</span>
+                                </div>
+                            </div>
+
+                            <hr class="border-stone-100">
+
+                            <!-- Control 1: Upload Photo -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center text-xs">
+                                    <label class="font-bold text-plum-900 uppercase tracking-wider">1. UPLOAD HIGH-RES MEMORY</label>
+                                    <span class="text-mint-600 font-semibold flex items-center gap-1">✓ Photo Selected.png</span>
+                                </div>
+                                
+                                <div class="border-2 border-dashed border-mint-600/50 bg-mint-100/30 rounded-2xl p-6 text-center hover:bg-mint-100/50 transition cursor-pointer relative" onclick="document.getElementById('photo-file-input').click()">
+                                    <input type="file" id="photo-file-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)">
+                                    <svg class="w-8 h-8 text-mint-600 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                    <div class="text-xs font-bold text-plum-900">Replace uploaded photo</div>
+                                    <div class="text-[10px] text-stone-500 mt-1">Recommended sizes: JPEG/PNG up to 25MB for crisp 300 DPI frames.</div>
+                                </div>
+                            </div>
+
+                            <!-- Control 2: Size & Price Selection -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-plum-900 uppercase tracking-wider">2. FRAME SIZE & MATERIALS</label>
+                                <p class="text-[11px] text-stone-500">Select Size (Price adjusts based on selection):</p>
+                                
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button onclick="selectFrameSize('8x10', 1499, 1999)" id="size-btn-8x10" class="size-option-btn border-2 border-purple-600 bg-purple-50/50 p-3 rounded-2xl text-left transition">
+                                        <div class="font-bold text-plum-900 text-xs">8" x 10"</div>
+                                        <div class="text-[10px] text-stone-500">Desktop Frame</div>
+                                        <div class="text-xs font-extrabold text-coral-500 mt-1">₹1,499</div>
+                                    </button>
+                                    <button onclick="selectFrameSize('12x15', 2249, 2899)" id="size-btn-12x15" class="size-option-btn border-2 border-stone-200 p-3 rounded-2xl text-left transition">
+                                        <div class="font-bold text-plum-900 text-xs">12" x 15"</div>
+                                        <div class="text-[10px] text-stone-500">Cozy Wall Frame</div>
+                                        <div class="text-xs font-extrabold text-coral-500 mt-1">₹2,249</div>
+                                    </button>
+                                    <button onclick="selectFrameSize('18x24', 3499, 4299)" id="size-btn-18x24" class="size-option-btn border-2 border-stone-200 p-3 rounded-2xl text-left transition">
+                                        <div class="font-bold text-plum-900 text-xs">18" x 24"</div>
+                                        <div class="text-[10px] text-stone-500">Grand Living Frame</div>
+                                        <div class="text-xs font-extrabold text-coral-500 mt-1">₹3,499</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Control 3: Plaque Text Engraving -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-plum-900 uppercase tracking-wider">Add Optional Bottom Plaque Engraved Text (Max 40 letters):</label>
+                                <input type="text" id="plaque-text-input" value="Happy 25th Anniversary Mom & Dad!" maxlength="40" oninput="updatePlaqueText(this.value)" class="w-full bg-cream-100 border border-stone-200 rounded-xl px-4 py-3 text-xs font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                            </div>
+
+                            <!-- Delivery Pincode Box -->
+                            <div class="bg-stone-50 border border-stone-200/80 rounded-xl p-3.5 flex items-center gap-3 text-xs text-stone-700">
+                                <svg class="w-5 h-5 text-coral-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                <div>Deliver to: <strong class="text-plum-900">Mumbai 400001</strong> • <span class="text-mint-600 font-semibold">Express Delivery by Saturday!</span></div>
+                            </div>
+
+                            <!-- Add To Cart Controls -->
+                            <div class="flex items-center gap-4 pt-2">
+                                <div class="flex items-center border border-stone-200 rounded-xl bg-stone-50">
+                                    <button onclick="changeQty(-1)" class="px-3 py-3 text-sm font-bold text-stone-600 hover:text-plum-900">-</button>
+                                    <span id="custom-qty" class="px-3 py-3 text-xs font-bold text-plum-900">1</span>
+                                    <button onclick="changeQty(1)" class="px-3 py-3 text-sm font-bold text-stone-600 hover:text-plum-900">+</button>
+                                </div>
+                                <button onclick="addCustomizedToCart()" class="flex-grow bg-coral-500 hover:bg-coral-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-coral-500/30 transition flex items-center justify-center gap-2 text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"></path></svg>
+                                    <span>Add Customized Gift To Cart</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4: CART & CHECKOUT PAGE -->
+            <div id="page-cart" class="view-page hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    
+                    <h1 class="text-3xl font-extrabold text-plum-900 mb-6">Your Custom Cart (<span id="cart-item-count-heading">2</span> Gifts)</h1>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        <!-- Cart Items List -->
+                        <div class="lg:col-span-7 space-y-6">
+                            
+                            <!-- Banner -->
+                            <div class="bg-mint-200 border border-mint-600/30 p-4 rounded-2xl flex items-start gap-3">
+                                <div class="bg-white p-2 rounded-lg text-mint-600 text-lg shadow-sm">🎁</div>
+                                <div>
+                                    <div class="font-bold text-plum-900 text-xs">Separate Hand-Tied Printed Gift Notes Included!</div>
+                                    <p class="text-stone-600 text-[11px] mt-0.5">Write a unique message for each gift. We will print it on a matching premium textured card and tie it beautifully directly onto that specific gift wrap box.</p>
+                                </div>
+                            </div>
+
+                            <!-- Items Container -->
+                            <div id="cart-items-container" class="space-y-4">
+                                <!-- Dynamic Cart Items Rendered -->
+                            </div>
+
+                        </div>
+
+                        <!-- Secure Order Checkout Sidebar -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-white p-6 rounded-3xl border border-stone-200/60 shadow-sm space-y-5 sticky top-24">
+                                <h3 class="font-extrabold text-plum-900 text-lg">Secure Order Checkout</h3>
+
+                                <!-- Shipping Address -->
+                                <div class="space-y-3">
+                                    <h4 class="text-[11px] font-bold uppercase tracking-wider text-stone-400">SHIPPING DESTINATION (INDIA)</h4>
+                                    <input type="text" value="Priya Sharma" placeholder="Full Name" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-xs text-stone-800">
+                                    <input type="text" value="+91 98765 43210" placeholder="Phone Number" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-xs text-stone-800">
+                                    <input type="text" value="Flat 502, Sea Breeze Apartments, Bandra West" placeholder="Address" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-xs text-stone-800">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <input type="text" value="Mumbai" placeholder="City" class="bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-xs text-stone-800">
+                                        <input type="text" value="400050" placeholder="Pincode" class="bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-xs text-stone-800">
+                                    </div>
+                                </div>
+
+                                <!-- Coupon -->
+                                <div class="flex gap-2">
+                                    <input type="text" id="coupon-code" value="GIFT100" class="flex-grow bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2 text-xs font-bold text-plum-900 uppercase">
+                                    <button onclick="applyCoupon()" class="bg-plum-900 hover:bg-plum-800 text-white font-bold text-xs px-4 py-2 rounded-xl">APPLIED</button>
+                                </div>
+
+                                <!-- Summary -->
+                                <div class="space-y-2 text-xs pt-2 border-t border-stone-100">
+                                    <div class="flex justify-between text-stone-600">
+                                        <span>Gifts Subtotal (<span id="summary-qty">2</span> items):</span>
+                                        <span class="font-bold text-plum-900" id="summary-subtotal">₹2,298</span>
+                                    </div>
+                                    <div class="flex justify-between text-emerald-600 font-semibold">
+                                        <span>Coupon Discount (GIFT100):</span>
+                                        <span>-₹100</span>
+                                    </div>
+                                    <div class="flex justify-between text-stone-600">
+                                        <span>Special Premium Wrapping:</span>
+                                        <span class="text-emerald-600 font-bold">FREE</span>
+                                    </div>
+                                    <div class="flex justify-between text-stone-600">
+                                        <span>Shipping (Express):</span>
+                                        <span class="text-emerald-600 font-bold">FREE</span>
+                                    </div>
+                                    <div class="flex justify-between items-baseline pt-3 border-t border-stone-100 text-sm">
+                                        <span class="font-extrabold text-plum-900">Total Payable INR:</span>
+                                        <span class="text-2xl font-extrabold text-coral-500" id="summary-total">₹2,198</span>
+                                    </div>
+                                </div>
+
+                                <!-- Payment Actions -->
+                                <div class="space-y-2.5 pt-2">
+                                    <button onclick="completeCheckout('Online Payment (UPI/Card)')" class="w-full bg-coral-500 hover:bg-coral-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-coral-500/30 transition text-xs flex items-center justify-center gap-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                        <span>Proceed to UPI / Card Payment</span>
+                                    </button>
+                                    <button onclick="completeCheckout('Cash On Delivery')" class="w-full bg-white border-2 border-stone-300 text-stone-800 hover:border-plum-900 font-bold py-3 rounded-xl transition text-xs">
+                                        Order with Cash On Delivery (COD)
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 5: ADMIN OPERATIONS DASHBOARD -->
+            <div id="page-admin" class="view-page hidden min-h-screen bg-stone-100 flex">
+                
+                <!-- Admin Left Sidebar -->
+                <aside class="w-64 bg-plum-950 text-white flex flex-col justify-between shrink-0 min-h-screen">
+                    <div>
+                        <!-- Admin Header Logo -->
+                        <div class="p-6 border-b border-plum-900">
+                            <div class="font-extrabold text-lg text-white">Choose Your <span class="text-coral-500">GIFT</span></div>
+                            <span class="bg-coral-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider inline-block mt-1">PRIVATE PORTAL</span>
+                        </div>
+
+                        <!-- Admin Navigation -->
+                        <nav class="p-4 space-y-1 text-xs font-semibold">
+                            <button onclick="switchAdminTab('dashboard')" id="admin-tab-dashboard" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-plum-800 text-white transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                                <span>Dashboard Hub</span>
+                            </button>
+                            <button onclick="switchAdminTab('orders')" id="admin-tab-orders" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-stone-300 hover:bg-plum-900 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                                <span>Custom Orders</span>
+                            </button>
+                            <button onclick="switchAdminTab('products')" id="admin-tab-products" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-stone-300 hover:bg-plum-900 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                                <span>Products Catalog</span>
+                            </button>
+                            <button onclick="switchAdminTab('editor')" id="admin-tab-editor" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-stone-300 hover:bg-plum-900 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                <span>Custom Fields Editor</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- User Profile Footer -->
+                    <div class="p-4 border-t border-plum-900 flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-9 h-9 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-xs text-white">Amit Mehra</div>
+                            <div class="text-[10px] text-stone-400">Super Admin</div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Admin Main Content Area -->
+                <main class="flex-grow p-8 bg-cream-100 overflow-y-auto">
+                    
+                    <!-- Admin Header Topbar -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h1 class="text-2xl font-extrabold text-plum-900" id="admin-page-title">Admin Operations Dashboard</h1>
+                            <div class="inline-flex items-center gap-2 mt-1">
+                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">OPERATIONAL LIVE</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-stone-400 font-medium">Last updated: Just Now</span>
+                            <button onclick="toggleAdminView()" class="bg-white border border-stone-200 text-xs font-bold px-3 py-1.5 rounded-lg text-plum-900 hover:bg-stone-50">Exit Admin</button>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN SUBVIEW 1: DASHBOARD HUB -->
+                    <div id="admin-subview-dashboard" class="space-y-6">
+                        
+                        <!-- Alert Banner -->
+                        <div class="bg-purple-100 border border-purple-200 p-4 rounded-2xl flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-amber-600 text-xl">⚠️</span>
+                                <div>
+                                    <div class="font-bold text-plum-900 text-xs">⚠️ 4 Custom Photo Print Uploads Pending Quality Check!</div>
+                                    <p class="text-stone-600 text-[11px]">High-priority order frames require manual resolution checks to ensure print resolution is above 150 DPI before going to full production today.</p>
+                                </div>
+                            </div>
+                            <button onclick="switchAdminTab('products')" class="bg-plum-900 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-plum-800">INSPECT QUEUE</button>
+                        </div>
+
+                        <!-- KPI Stat Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                                <div class="text-stone-500 text-xs font-semibold">Today's Custom Sales</div>
+                                <div class="text-2xl font-extrabold text-coral-500 mt-2">₹1,48,930</div>
+                                <div class="text-[10px] text-emerald-600 font-bold mt-1">+12.4% vs yesterday</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                                <div class="text-stone-500 text-xs font-semibold">Active Print Queue</div>
+                                <div class="text-2xl font-extrabold text-plum-900 mt-2">42 Orders</div>
+                                <div class="text-[10px] text-stone-400 mt-1">12 in frames, 30 in cups/pillow</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                                <div class="text-stone-500 text-xs font-semibold">Conversion Rate</div>
+                                <div class="text-2xl font-extrabold text-emerald-600 mt-2">4.82%</div>
+                                <div class="text-[10px] text-stone-400 mt-1">High customization preview intent</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                                <div class="text-stone-500 text-xs font-semibold">Hand-Tied Gift Notes</div>
+                                <div class="text-2xl font-extrabold text-purple-700 mt-2">38 Printed Today</div>
+                                <div class="text-[10px] text-stone-400 mt-1">Delivered with custom package</div>
+                            </div>
+                        </div>
+
+                        <!-- Active Orders Needing Print Verification Table -->
+                        <div class="bg-white rounded-2xl border border-stone-200/60 p-6 shadow-sm">
+                            <h3 class="font-extrabold text-plum-900 text-base mb-4">Active Orders Needing Print Verification</h3>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="text-stone-400 uppercase tracking-wider border-b border-stone-100 font-bold text-[10px]">
+                                            <th class="py-3 px-2">ORDER ID</th>
+                                            <th class="py-3 px-2">CUSTOMER NAME</th>
+                                            <th class="py-3 px-2">CUSTOM ITEMS CATEGORY</th>
+                                            <th class="py-3 px-2">AMOUNT</th>
+                                            <th class="py-3 px-2">PRINT STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-stone-100 text-stone-700 font-medium">
+                                        <tr class="hover:bg-stone-50">
+                                            <td class="py-3 px-2 text-coral-500 font-bold">#IN-4809</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">Priya Sharma</td>
+                                            <td class="py-3 px-2">Premium Photo Frame (8x10), Magic Reveal Cup</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">₹2,198</td>
+                                            <td class="py-3 px-2">
+                                                <span class="bg-coral-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">VERIFYING PHOTO</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-stone-50">
+                                            <td class="py-3 px-2 text-coral-500 font-bold">#IN-4808</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">Karan Iyer</td>
+                                            <td class="py-3 px-2">Laser Engraved Wood Block Portrait</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">₹1,599</td>
+                                            <td class="py-3 px-2">
+                                                <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2.5 py-1 rounded-full">IN PRODUCTION</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-stone-50">
+                                            <td class="py-3 px-2 text-coral-500 font-bold">#IN-4807</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">Aman Malhotra</td>
+                                            <td class="py-3 px-2">Custom Metallic Family Keychain</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">₹399</td>
+                                            <td class="py-3 px-2">
+                                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-full">COMPLETED</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-stone-50">
+                                            <td class="py-3 px-2 text-coral-500 font-bold">#IN-4806</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">Simran Kaur</td>
+                                            <td class="py-3 px-2">Personalized Pillow, Custom Photo Lamp</td>
+                                            <td class="py-3 px-2 font-bold text-plum-900">₹2,698</td>
+                                            <td class="py-3 px-2">
+                                                <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2.5 py-1 rounded-full">IN PRODUCTION</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ADMIN SUBVIEW 2: PRODUCTS & CUSTOM ORDER WORKSPACE -->
+                    <div id="admin-subview-products" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        <!-- Catalog List -->
+                        <div class="lg:col-span-6 bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm space-y-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-extrabold text-plum-900 text-base">Catalog Pricing & Fields</h3>
+                                <button class="bg-coral-500 hover:bg-coral-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg">+ ADD PRODUCT</button>
+                            </div>
+
+                            <div class="space-y-3 text-xs">
+                                <div class="border border-stone-200 p-3.5 rounded-xl flex items-center justify-between bg-stone-50/50">
+                                    <div>
+                                        <div class="font-bold text-plum-900">Premium Photo Keychains</div>
+                                        <div class="text-stone-500 text-[10px]">₹399-₹499 • Custom Fields: Photo, Plaque Engraving</div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-700 font-bold text-[10px] px-2.5 py-1 rounded-md">IN STOCK</span>
+                                </div>
+                                <div class="border border-stone-200 p-3.5 rounded-xl flex items-center justify-between bg-stone-50/50">
+                                    <div>
+                                        <div class="font-bold text-plum-900">Photo Printing Cups</div>
+                                        <div class="text-stone-500 text-[10px]">₹499-₹1,249 • Custom Fields: Hot Reveal, Wrap Photo Collage</div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-700 font-bold text-[10px] px-2.5 py-1 rounded-md">IN STOCK</span>
+                                </div>
+                                <div class="border border-coral-200 p-3.5 rounded-xl flex items-center justify-between bg-coral-50/30">
+                                    <div>
+                                        <div class="font-bold text-plum-900">Fully Customized Photo Frames</div>
+                                        <div class="text-stone-500 text-[10px]">₹599-₹3,599 • Custom Fields: Teakwood/Matte, Photo, Plaque</div>
+                                    </div>
+                                    <span class="bg-coral-500 text-white font-bold text-[10px] px-2.5 py-1 rounded-md">LOW STOCK (PLAQUES)</span>
+                                </div>
+                                <div class="border border-stone-200 p-3.5 rounded-xl flex items-center justify-between bg-stone-50/50">
+                                    <div>
+                                        <div class="font-bold text-plum-900">Book Printing Memories</div>
+                                        <div class="text-stone-500 text-[10px]">₹799-₹2,499 • Custom Fields: Collage Book pages, Custom Cover</div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-700 font-bold text-[10px] px-2.5 py-1 rounded-md">IN STOCK</span>
+                                </div>
+                                <div class="border border-stone-200 p-3.5 rounded-xl flex items-center justify-between bg-stone-50/50">
+                                    <div>
+                                        <div class="font-bold text-plum-900">Personalized Cushion Pillow</div>
+                                        <div class="text-stone-500 text-[10px]">₹699-₹1,499 • Custom Fields: Cushion Cover Photo, Text Quote</div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-700 font-bold text-[10px] px-2.5 py-1 rounded-md">IN STOCK</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selected Order Inspector -->
+                        <div class="lg:col-span-6 bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm space-y-4">
+                            <div class="flex justify-between items-center pb-3 border-b border-stone-100">
+                                <h3 class="font-extrabold text-plum-900 text-base">Selected Order Inspector</h3>
+                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded">INSPECTION PASS</span>
+                            </div>
+
+                            <div class="bg-cream-100 p-3.5 rounded-xl text-xs space-y-1">
+                                <div><strong class="text-plum-900">Order ID:</strong> #IN-4809 (Bandra, Mumbai)</div>
+                                <div><strong class="text-plum-900">Customer Name:</strong> Priya Sharma</div>
+                                <div><strong class="text-plum-900">Delivery Priority:</strong> Weekend Express</div>
+                            </div>
+
+                            <!-- Photo Print Check -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="font-bold text-plum-900 uppercase tracking-wider text-[11px]">📷 CUSTOM UPLOADED PRINT PHOTO:</span>
+                                </div>
+                                <div class="rounded-xl overflow-hidden border border-stone-200 aspect-[16/9] relative bg-stone-100">
+                                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex justify-between items-center text-[10px]">
+                                    <span class="text-emerald-600 font-bold">✓ Print ready resolution: 3200 x 2400 (DPI validated)</span>
+                                    <button class="text-coral-500 underline font-bold">Download Raw</button>
+                                </div>
+                            </div>
+
+                            <!-- Hand-Tied Print Note Wrap -->
+                            <div class="bg-lavender-100 p-4 rounded-xl space-y-2 border border-purple-200">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-plum-900 text-xs">🎴 HAND-TIED PRINT NOTE WRAP:</span>
+                                    <span class="bg-coral-500 text-white text-[9px] font-bold px-2 py-0.5 rounded">PRINT PENDING</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500">To be printed on 250 GSM Classic Cream cardstock:</p>
+                                <div class="bg-white p-3 rounded-lg border border-purple-200 text-xs italic font-serif text-plum-900">
+                                    "Dear Mom & Dad, wishing you both an amazing 25 years of love. Thank you for showing us how beautiful family is. - Aman & Priya"
+                                </div>
+                                <div class="flex gap-2 pt-1">
+                                    <button class="bg-plum-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg flex-grow">🖨️ PRINT CARD</button>
+                                    <button class="bg-white border border-stone-300 text-xs font-bold px-3 py-1.5 rounded-lg text-stone-700">EDIT TYPO</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </main>
+
+            </div>
+
+        </main>
+
+        <footer id="main-footer" class="bg-plum-900 text-white pt-14 pb-8 border-t border-plum-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <!-- Trust Features Banner -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-12 border-b border-plum-800/80 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <svg class="w-6 h-6 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-xs font-bold">100% High-Resolution Guaranteed</span>
+                    </div>
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <svg class="w-6 h-6 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <span class="text-xs font-bold">Express Free Pan-India Delivery</span>
+                    </div>
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <svg class="w-6 h-6 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        <span class="text-xs font-bold">Artisanal Premium Wrapping Included</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 text-xs">
+                    
+                    <!-- Col 1 -->
+                    <div class="md:col-span-4 space-y-4">
+                        <div class="font-extrabold text-xl">Choose Your <span class="text-coral-500">GIFT</span></div>
+                        <p class="text-stone-300 leading-relaxed max-w-sm">
+                            Transforming simple everyday products into treasured personalized keepsakes. Crafted carefully with top-grade prints & premium materials in India.
+                        </p>
+                    </div>
+
+                    <!-- Col 2 -->
+                    <div class="md:col-span-2 space-y-3">
+                        <h4 class="font-bold uppercase tracking-wider text-coral-500">GIFT CATEGORIES</h4>
+                        <ul class="space-y-2 text-stone-300 font-medium">
+                            <li><button onclick="navigateTo('explore')" class="hover:text-white">Custom Keychains</button></li>
+                            <li><button onclick="navigateTo('explore')" class="hover:text-white">Photo Printing Cups</button></li>
+                            <li><button onclick="navigateTo('explore')" class="hover:text-white">Premium Photo Frames</button></li>
+                            <li><button onclick="navigateTo('explore')" class="hover:text-white">Wood & Pillow Printing</button></li>
+                            <li><button onclick="navigateTo('explore')" class="hover:text-white">Engraved Wallets</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 3 -->
+                    <div class="md:col-span-2 space-y-3">
+                        <h4 class="font-bold uppercase tracking-wider text-coral-500">CUSTOMER HELP</h4>
+                        <ul class="space-y-2 text-stone-300 font-medium">
+                            <li><a href="#" class="hover:text-white">Order Tracking</a></li>
+                            <li><a href="#" class="hover:text-white">Customization Guides</a></li>
+                            <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                            <li><a href="#" class="hover:text-white">Bulk Corporate Orders</a></li>
+                            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 4 -->
+                    <div class="md:col-span-4 space-y-3">
+                        <h4 class="font-bold uppercase tracking-wider text-coral-500">JOIN OUR GIFT CLUB</h4>
+                        <p class="text-stone-300">Sign up for 10% off your first personalized order plus weekly gifting inspirations.</p>
+                        <div class="flex gap-2 pt-1">
+                            <input type="email" placeholder="Enter email ID" class="bg-plum-800 border border-plum-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none flex-grow">
+                            <button onclick="alert('Thank you for joining our Gift Club!')" class="bg-coral-500 hover:bg-coral-600 text-white font-bold px-5 py-2.5 rounded-xl transition">JOIN</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pt-8 border-t border-plum-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-stone-400">
+                    <div>© 2026 Choose Your GIFT India. All rights reserved. Secure SSL checkout.</div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-white/10 px-2 py-0.5 rounded text-white font-bold">UPI</span>
+                        <span class="bg-white/10 px-2 py-0.5 rounded text-white font-bold">CARDS</span>
+                        <span class="bg-coral-500 text-white px-2 py-0.5 rounded font-bold">COD AVAILABLE</span>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Sample Product Database
+        const productsData = [
+            {
+                id: 1,
+                title: "Engraved Metal Family Keychain",
+                category: "Keychains",
+                price: 399,
+                origPrice: 499,
+                rating: 4.9,
+                reviews: 124,
+                img: "https://images.unsplash.com/photo-1628149453636-123471016839?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 2,
+                title: "Magic Photo Printing Color-Changing Cup",
+                category: "Photo Cups",
+                price: 799,
+                origPrice: 1249,
+                rating: 4.8,
+                reviews: 380,
+                img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 3,
+                title: "Fully Customized Wood Photo Frame",
+                category: "Photo Frames",
+                price: 1499,
+                origPrice: 1999,
+                rating: 5.0,
+                reviews: 450,
+                img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 4,
+                title: "Personalized Cozy Velvet Pillow",
+                category: "Cozy Pillow",
+                price: 999,
+                origPrice: 1499,
+                rating: 4.7,
+                reviews: 98,
+                img: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 5,
+                title: "Custom Photo Printing Magic Cup",
+                category: "Photo Cups",
+                price: 599,
+                origPrice: 899,
+                rating: 4.9,
+                reviews: 124,
+                img: "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 6,
+                title: "Personalized Family Portrait Frame",
+                category: "Photo Frames",
+                price: 1899,
+                origPrice: 2499,
+                rating: 5.0,
+                reviews: 380,
+                img: "https://images.unsplash.com/photo-1582562124811-c091b7a0a002?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 7,
+                title: "Custom Magical Glowing Acrylic Lamp",
+                category: "Photo Lamps",
+                price: 1699,
+                origPrice: 2199,
+                rating: 4.8,
+                reviews: 86,
+                img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            },
+            {
+                id: 8,
+                title: "Engraved Premium Leather Wallet",
+                category: "Keychains",
+                price: 1299,
+                origPrice: 1799,
+                rating: 4.7,
+                reviews: 145,
+                img: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+                sale: true
+            }
+        ];
+
+        // Active State
+        let currentView = 'home';
+        let isAdminActive = false;
+        let cartItems = [
+            {
+                id: 101,
+                title: "Fully Customized Premium Photo Frame",
+                details: 'Size: 8" x 10" | Plaque text: "Happy 25th Anniversary Mom & Dad!"',
+                price: 1499,
+                qty: 1,
+                img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=300&q=80",
+                giftNote: "Dear Mom & Dad, wishing you both an amazing 25 years of love. Thank you for showing us how beautiful family is. - Aman & Priya"
+            },
+            {
+                id: 102,
+                title: "Magic Photo Printing Cup",
+                details: "Type: Hot-Water Magic Reveal | Print: Single Collage Portrait",
+                price: 799,
+                qty: 1,
+                img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80",
+                giftNote: ""
+            }
+        ];
+
+        // Frame Customizer State
+        let customizerState = {
+            size: '8x10',
+            price: 1499,
+            origPrice: 1999,
+            qty: 1,
+            plaqueText: "Happy 25th Anniversary Mom & Dad!",
+            imgUrl: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+        };
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBestsellers();
+            renderCatalogGrid(productsData);
+            renderCart();
+        });
+
+        // Navigation Controller
+        function navigateTo(pageId) {
+            if (isAdminActive) {
+                toggleAdminView();
+            }
+            currentView = pageId;
+            document.querySelectorAll('.view-page').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Render Bestsellers
+        function renderBestsellers() {
+            const grid = document.getElementById('bestsellers-grid');
+            const items = productsData.slice(0, 4);
+            grid.innerHTML = items.map(p => `
+                <div onclick="openProductCustomizer(${p.id})" class="bg-white rounded-3xl border border-stone-200/60 overflow-hidden hover:shadow-xl transition cursor-pointer flex flex-col group">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-stone-100">
+                        <span class="absolute top-3 left-3 bg-coral-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded shadow z-10">SALE</span>
+                        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="font-bold text-plum-900 text-xs sm:text-sm line-clamp-2">${p.title}</h3>
+                            <div class="flex items-center gap-1 mt-2 text-xs">
+                                <span class="text-amber-400">★</span>
+                                <span class="font-bold text-stone-800">${p.rating}</span>
+                                <span class="text-stone-400 text-[10px]">(${p.reviews} reviews)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-baseline gap-2 mt-4">
+                            <span class="text-coral-500 font-extrabold text-base">₹${p.price}</span>
+                            <span class="text-stone-400 line-through text-xs">₹${p.origPrice}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Catalog
+        function renderCatalogGrid(items) {
+            const grid = document.getElementById('catalog-products-grid');
+            document.getElementById('catalog-count-text').innerText = items.length;
+            document.getElementById('filter-result-count').innerText = items.length;
+
+            if (items.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-stone-500 text-sm">No items found matching selected filters.</div>`;
+                return;
+            }
+
+            grid.innerHTML = items.map(p => `
+                <div onclick="openProductCustomizer(${p.id})" class="bg-white rounded-2xl border border-stone-200/60 overflow-hidden hover:shadow-lg transition cursor-pointer flex flex-col group">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-stone-100">
+                        ${p.sale ? `<span class="absolute top-2.5 left-2.5 bg-coral-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded shadow z-10">SALE</span>` : ''}
+                        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-4 flex flex-col justify-between flex-grow space-y-2">
+                        <h3 class="font-bold text-plum-900 text-xs line-clamp-2">${p.title}</h3>
+                        <div class="flex items-center gap-1 text-[11px]">
+                            <span class="text-amber-400">★</span>
+                            <span class="font-bold text-stone-800">${p.rating}</span>
+                            <span class="text-stone-400">(${p.reviews})</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 pt-1">
+                            <span class="text-coral-500 font-extrabold text-sm">₹${p.price}</span>
+                            <span class="text-stone-400 line-through text-[11px]">₹${p.origPrice}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Functionality
+        function applyFilters() {
+            const checkedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+            const priceVal = document.querySelector('input[name="price-range"]:checked').value;
+            const sortVal = document.getElementById('sort-select').value;
+
+            let filtered = productsData.filter(p => {
+                // Category match
+                const matchesCategory = checkedCategories.length === 0 || checkedCategories.includes(p.category);
+                
+                // Price match
+                let matchesPrice = true;
+                if (priceVal === 'under-499') matchesPrice = p.price <= 499;
+                else if (priceVal === '500-1499') matchesPrice = p.price >= 500 && p.price <= 1499;
+                else if (priceVal === '1500-2999') matchesPrice = p.price >= 1500 && p.price <= 2999;
+                else if (priceVal === '3000-above') matchesPrice = p.price >= 3000;
+
+                return matchesCategory && matchesPrice;
+            });
+
+            // Sorting
+            if (sortVal === 'low-high') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'high-low') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
+            renderCatalogGrid(filtered);
+        }
+
+        function resetFilters() {
+            document.querySelectorAll('.category-checkbox').forEach(cb => cb.checked = false);
+            document.querySelector('input[name="price-range"][value="all"]').checked = true;
+            document.getElementById('sort-select').value = 'popular';
+            renderCatalogGrid(productsData);
+        }
+
+        function filterCategory(catName) {
+            navigateTo('explore');
+            resetFilters();
+            const cb = Array.from(document.querySelectorAll('.category-checkbox')).find(c => c.value === catName);
+            if (cb) {
+                cb.checked = true;
+                applyFilters();
+            }
+        }
+
+        // Search Input
+        function handleSearch(e) {
+            const query = e.target.value.toLowerCase().trim();
+            if (query === '') {
+                renderCatalogGrid(productsData);
+                return;
+            }
+            navigateTo('explore');
+            const filtered = productsData.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            renderCatalogGrid(filtered);
+        }
+
+        // Open Customizer
+        function openProductCustomizer(id) {
+            const prod = productsData.find(p => p.id === id);
+            if (prod) {
+                document.getElementById('customizer-title-breadcrumb').innerText = prod.title;
+                document.getElementById('custom-product-name').innerText = prod.title;
+                document.getElementById('custom-price').innerText = `₹${prod.price}`;
+                document.getElementById('custom-orig-price').innerText = `₹${prod.origPrice}`;
+                customizerState.price = prod.price;
+                customizerState.origPrice = prod.origPrice;
+                customizerState.imgUrl = prod.img;
+                document.getElementById('live-preview-img').src = prod.img;
+                navigateTo('personalize');
+            }
+        }
+
+        // Customizer Interactive Logic
+        function selectFrameSize(sizeKey, price, origPrice) {
+            customizerState.size = sizeKey;
+            customizerState.price = price;
+            customizerState.origPrice = origPrice;
+
+            document.getElementById('custom-price').innerText = `₹${price}`;
+            document.getElementById('custom-orig-price').innerText = `₹${origPrice}`;
+
+            document.querySelectorAll('.size-option-btn').forEach(btn => {
+                btn.classList.remove('border-purple-600', 'bg-purple-50/50');
+                btn.classList.add('border-stone-200');
+            });
+
+            const activeBtn = document.getElementById(`size-btn-${sizeKey}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-stone-200');
+                activeBtn.classList.add('border-purple-600', 'bg-purple-50/50');
+            }
+
+            const sizeLabels = { '8x10': '8" x 10"', '12x15': '12" x 15"', '18x24': '18" x 24"' };
+            document.getElementById('selected-size-label').innerText = sizeLabels[sizeKey];
+        }
+
+        function updatePlaqueText(text) {
+            customizerState.plaqueText = text;
+            document.getElementById('live-plaque-text').innerText = text ? `"${text}"` : '""';
+        }
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    customizerState.imgUrl = evt.target.result;
+                    document.getElementById('live-preview-img').src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function switchPreviewImage(index) {
+            const samples = [
+                "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80"
+            ];
+            customizerState.imgUrl = samples[index];
+            document.getElementById('live-preview-img').src = samples[index];
+        }
+
+        function changeQty(delta) {
+            customizerState.qty = Math.max(1, customizerState.qty + delta);
+            document.getElementById('custom-qty').innerText = customizerState.qty;
+        }
+
+        function addCustomizedToCart() {
+            const newItem = {
+                id: Date.now(),
+                title: document.getElementById('custom-product-name').innerText,
+                details: `Size: ${document.getElementById('selected-size-label').innerText} | Plaque: "${customizerState.plaqueText}"`,
+                price: customizerState.price,
+                qty: customizerState.qty,
+                img: customizerState.imgUrl,
+                giftNote: ""
+            };
+            cartItems.unshift(newItem);
+            renderCart();
+            navigateTo('cart');
+        }
+
+        // Cart Rendering & Checkout
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const totalCount = cartItems.reduce((acc, i) => acc + i.qty, 0);
+            
+            document.getElementById('cart-count-badge').innerText = totalCount;
+            document.getElementById('cart-item-count-heading').innerText = cartItems.length;
+            document.getElementById('summary-qty').innerText = totalCount;
+
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-12 text-center rounded-3xl border border-stone-200">
+                        <div class="text-4xl mb-2">🛒</div>
+                        <div class="font-bold text-plum-900 text-base">Your cart is currently empty!</div>
+                        <p class="text-stone-500 text-xs mt-1">Explore our custom collection to create memorable gifts.</p>
+                        <button onclick="navigateTo('explore')" class="mt-4 bg-coral-500 text-white text-xs font-bold px-6 py-2.5 rounded-xl">Start Gifting</button>
+                    </div>
+                `;
+                updateCartTotals();
+                return;
+            }
+
+            container.innerHTML = cartItems.map((item, index) => `
+                <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm space-y-4">
+                    <div class="flex items-start gap-4">
+                        <img src="${item.img}" class="w-20 h-20 rounded-xl object-cover border border-stone-200 flex-shrink-0">
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-extrabold text-plum-900 text-sm">${item.title}</h4>
+                                <span class="font-extrabold text-plum-900 text-sm">₹${item.price * item.qty}</span>
+                            </div>
+                            <p class="text-[11px] text-stone-500 mt-1">${item.details}</p>
+                            <div class="text-[10px] text-emerald-600 font-bold mt-1">✓ Custom Photo Uploaded (preview validated)</div>
+                            
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="text-xs text-stone-400">Qty: ${item.qty}</div>
+                                <button onclick="removeCartItem(${index})" class="text-xs text-coral-500 hover:underline font-bold">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gift Note Box -->
+                    <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200/60 text-xs">
+                        <div class="font-bold text-amber-950 flex items-center gap-1.5 text-[11px]">
+                            <span>🎁 PRIVATE HAND-TIED NOTE FOR THIS GIFT:</span>
+                        </div>
+                        <input type="text" value="${item.giftNote}" placeholder="No private hand-tied note added for this item. Click to type..." onchange="updateGiftNote(${index}, this.value)" class="w-full mt-2 bg-white border border-stone-200 rounded-lg px-3 py-2 text-xs text-stone-800 placeholder-stone-400 focus:outline-none">
+                    </div>
+                </div>
+            `).join('');
+
+            updateCartTotals();
+        }
+
+        function updateGiftNote(index, text) {
+            cartItems[index].giftNote = text;
+        }
+
+        function removeCartItem(index) {
+            cartItems.splice(index, 1);
+            renderCart();
+        }
+
+        function updateCartTotals() {
+            const subtotal = cartItems.reduce((acc, i) => acc + (i.price * i.qty), 0);
+            const discount = subtotal > 0 ? 100 : 0;
+            const total = Math.max(0, subtotal - discount);
+
+            document.getElementById('summary-subtotal').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+            document.getElementById('summary-total').innerText = `₹${total.toLocaleString('en-IN')}`;
+        }
+
+        function applyCoupon() {
+            alert("Coupon GIFT100 pre-applied successfully!");
+        }
+
+        function completeCheckout(type) {
+            if (cartItems.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert(`🎉 Order Placed Successfully via ${type}!\nThank you for gifting with Choose Your GIFT.`);
+            cartItems = [];
+            renderCart();
+            navigateTo('home');
+        }
+
+        // Admin Operational Dashboard Switching
+        function toggleAdminView() {
+            isAdminActive = !isAdminActive;
+            const mainHeader = document.getElementById('main-header');
+            const mainFooter = document.getElementById('main-footer');
+            const adminToggleBtnText = document.getElementById('admin-toggle-text');
+
+            if (isAdminActive) {
+                document.querySelectorAll('.view-page').forEach(el => el.classList.add('hidden'));
+                document.getElementById('page-admin').classList.remove('hidden');
+                mainHeader.classList.add('hidden');
+                mainFooter.classList.add('hidden');
+                adminToggleBtnText.innerText = "Back to Store Front";
+            } else {
+                document.getElementById('page-admin').classList.add('hidden');
+                mainHeader.classList.remove('hidden');
+                mainFooter.classList.remove('hidden');
+                adminToggleBtnText.innerText = "Admin Dashboard";
+                navigateTo(currentView);
+            }
+        }
+
+        function switchAdminTab(tab) {
+            document.getElementById('admin-subview-dashboard').classList.add('hidden');
+            document.getElementById('admin-subview-products').classList.add('hidden');
+
+            document.querySelectorAll('[id^="admin-tab-"]').forEach(btn => {
+                btn.classList.remove('bg-plum-800', 'text-white');
+                btn.classList.add('text-stone-300');
+            });
+
+            const activeTab = document.getElementById(`admin-tab-${tab}`);
+            if (activeTab) {
+                activeTab.classList.add('bg-plum-800', 'text-white');
+            }
+
+            if (tab === 'dashboard') {
+                document.getElementById('admin-subview-dashboard').classList.remove('hidden');
+                document.getElementById('admin-page-title').innerText = "Admin Operations Dashboard";
+            } else {
+                document.getElementById('admin-subview-products').classList.remove('hidden');
+                document.getElementById('admin-page-title').innerText = "Products & Custom Order Workspace";
+            }
+        }
+    </script>
+</body>
+</html>
